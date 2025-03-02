@@ -7,7 +7,6 @@ const HomePage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [businessName, setBusinessName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   
@@ -30,7 +29,7 @@ const HomePage: React.FC = () => {
         await signIn(email, password);
         navigate('/dashboard');
       } else {
-        await signUp(email, password, businessName);
+        await signUp(email, password);
         // After signup, user will be automatically logged in
         navigate('/dashboard');
       }
@@ -125,22 +124,6 @@ const HomePage: React.FC = () => {
                 required
               />
             </div>
-            
-            {!isLogin && (
-              <div>
-                <label className="block text-gray-700 mb-2" htmlFor="businessName">
-                  Business Name
-                </label>
-                <input
-                  id="businessName"
-                  type="text"
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            )}
             
             <button
               type="submit"
